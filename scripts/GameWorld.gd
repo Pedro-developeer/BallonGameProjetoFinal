@@ -20,11 +20,14 @@ var level_data: GameData.LevelMetadata
 @onready var end_game_label := $"%EndGameBoardLabel"
 @onready var end_game_button := $"%EndGameBoardButton"
 @onready var infinite_level_progression_timer := $InfiniteLevelTimer
+@onready var pause_button := $"%PauseButton"
+@onready var pause_panel_container := $"%PausePanelContainer"
 
 
 func _ready() -> void:
 	set_game_data()
 	reset_level_data()
+	reset_ui()
 	GameData.score_update.connect(score_update)
 	GameData.end_level.connect(end_level)
 
@@ -65,6 +68,11 @@ func reset_level_data() -> void:
 
 	if GameData.current_level == GameData.INFINITE_LEVEL:
 		GameData.infinite_level_progreession_tracker = 0
+
+
+func reset_ui() -> void:
+	pause_button.disabled = false
+	get_tree().paused = false
 
 
 func reset_spawn_rate() -> void:
@@ -113,17 +121,18 @@ func end_level():
 	check_for_level_end()
 	stop_balloon_spawner()
 	end_game_container.show()
+	pause_button.disabled = true
 
 	match GameData.game_state:
 		GameData.GAME_STATE.WIN:
-			win_game()
+			set_player_won_game_ui()
 		GameData.GAME_STATE.LOSE:
-			lose_game()
+			set_player_lost_game_ui()
 		_:
 			print("What? Future me, I only gave you two options!")
 
 
-func win_game() -> void:
+func set_player_won_game_ui() -> void:
 	end_game_label.text = "You've protected all of your Comrades!"
 	var levels_count := GameData.levels.size()
 	if GameData.current_level < levels_count - 1:
@@ -135,7 +144,7 @@ func win_game() -> void:
 		end_game_button.pressed.connect(back_to_main_menu)
 
 
-func lose_game() -> void:
+func set_player_lost_game_ui() -> void:
 	end_game_label.text = "You've failed to protect your Comrades!"
 	end_game_button.text = "Play Again?"
 	end_game_button.pressed.connect(reload_level)
@@ -155,6 +164,25 @@ func _on_Destroy_area_entered(area: Area2D) -> void:
 
 
 func on_target_reach_ship(area: Area2D) -> void:
-	if area.is_in_group("Target") and GameData.game_state == GameData.GAME_STATE.PLAYING:
-		GameData.game_state = GameData.GAME_STATE.LOSE
-		GameData.end_level.emit()
+	if area.is_in_group("Target"):
+		area.queue_free()
+		var is_playing := GameData.game_state == GameData.GAME_STATE.PLAYING
+
+		if is_playing:
+			GameData.game_state = GameData.GAME_STATE.LOSE
+			GameData.end_level.emit()
+
+
+func pause_game() -> void:
+	get_tree().paused = true
+	pause_panel_container.show()
+
+
+func _on_keep_playing_button_pressed() -> void:
+	get_tree().paused = false
+	pause_panel_container.hide()
+
+
+func _on_main_menu_button_pressed() -> void:
+	get_tree().paused = false
+	get_tree().change_scene_to_packed(MainMenuScn)
