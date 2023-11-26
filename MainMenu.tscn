@@ -232,12 +232,12 @@ autowrap_mode = 2
 shortcut_keys_enabled = false
 
 [node name="RichTextLabel" type="Label" parent="."]
-offset_left = 112.0
+offset_left = 113.0
 offset_top = 30.0
-offset_right = 412.0
+offset_right = 413.0
 offset_bottom = 80.0
 theme_type_variation = &"HeaderLarge"
-text = "Depot Gato"
+text = "Ballon Burst"
 
 [connection signal="pressed" from="MenusMarginContainer/MenusHBoxContainer/MenuContainer/MarginContainer/MenuContainer/InfiniteModeButton" to="." method="_on_infinite_mode_button_pressed"]
 [connection signal="pressed" from="MenusMarginContainer/MenusHBoxContainer/MenuContainer/MarginContainer/MenuContainer/ExitButton" to="." method="exit_game"]
