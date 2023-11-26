@@ -42,7 +42,24 @@ var levels: Array[LevelMetadata] = [
 	LevelMetadata.new(FULL_LANE, 1, 60, TARGET_TYPES),
 ]
 
-
-enum GAME_STATE { PLAYING, GAME_OVER, FINISHED }
+enum GAME_STATE {
+	PLAYING,
+	WIN,
+	LOSE,
+}
 
 var game_state := GAME_STATE.PLAYING
+
+var current_level := 0
+var score := 0
+
+signal end_level
+signal score_update
+
+func on_balloon_hit():
+	score += 1
+	emit_signal("score_update")
+
+	if score == levels[current_level].target_count:
+		game_state = GAME_STATE.WIN
+		emit_signal("end_level")
