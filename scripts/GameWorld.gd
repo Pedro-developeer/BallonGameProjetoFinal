@@ -11,7 +11,9 @@ var target_appeared_count := 0
 # Nodes and Scenes
 @onready var TargetScn := preload("res://assests/Target.tscn")
 @onready var MainMenuScn := preload("res://MainMenu.tscn")
-@onready var score_label := $HUD/ScoreBoard/ScoreLabel
+@onready var score_label := $HUD/MarginContainer/ScoreBoard/ScoreLabel
+@onready var level_progress := $HUD/MarginContainer/ScoreBoard/ProgressBar
+@onready var level_label := $HUD/LevelLabel
 @onready var end_game_container := $"%EndGameContainer"
 @onready var end_game_label := $"%EndGameBoardLabel"
 @onready var end_game_button := $"%EndGameBoardButton"
@@ -20,13 +22,15 @@ var target_appeared_count := 0
 
 func _ready() -> void:
 	reset_level_data()
-	GameData.score_update.connect(update_score)
+	GameData.score_update.connect(score_update)
 	GameData.end_level.connect(end_level)
 
 
 func reset_level_data():
 	GameData.score = 0
 	score_label.text = str(GameData.score)
+	level_label.text = "Level " + str(GameData.current_level + 1)
+	level_progress.value = 0
 
 	GameData.game_state = GameData.GAME_STATE.PLAYING
 
@@ -44,15 +48,22 @@ func spawn_target() -> void:
 	$".".add_child(target_balloon)
 
 	target_appeared_count += 1
-	if target_appeared_count == level_data.target_count:
+	var has_all_targets_spawned := target_appeared_count == level_data.target_count
+	if has_all_targets_spawned:
 		stop_spawing()
+
+	update_level_progress()
+
+
+func update_level_progress() -> void:
+	level_progress.value = (target_appeared_count as float / level_data.target_count as float) * 100
 
 
 func stop_spawing() -> void:
 	$BalloonSpawnTimer.stop()
 
 
-func update_score() -> void:
+func score_update() -> void:
 	score_label.text = str(GameData.score)
 
 
@@ -73,7 +84,7 @@ func win_game() -> void:
 	var levels_count := GameData.levels.size()
 	if GameData.current_level < levels_count - 1:
 		end_game_button.text = "Next Level"
-		end_game_button.pressed.connect(load_next_level)
+		end_game_button.pressed.connect(reload_level)
 	else:
 		end_game_label.text = "At last you won! No more cats being abducted!"
 		end_game_button.text = "Main Menu"
@@ -86,17 +97,12 @@ func lose_game() -> void:
 	end_game_button.pressed.connect(reload_level)
 
 
-func load_next_level() -> void:
-	GameData.current_level += 1
+func reload_level() -> void:
 	get_tree().reload_current_scene()
 
 
 func back_to_main_menu() -> void:
 	get_tree().change_scene_to_packed(MainMenuScn)
-
-
-func reload_level() -> void:
-	get_tree().reload_current_scene()
 
 
 # Release the balloon if it reaches the top
