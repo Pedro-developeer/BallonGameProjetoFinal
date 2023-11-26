@@ -69,12 +69,36 @@ enum GAME_STATE {
 	LOSE,
 }
 
+# Game state shared across game
 var game_state := GAME_STATE.PLAYING
 
+const INFINITE_LEVEL := -1
+
+# Current level when game is running
 var current_level := 0
+
+# Max level unlocked by player, saved to disk
 var unlocked_level := 0
+
+# Score of current level, reset when level changes
 var score := 0
+
+# Maximum score of player across all levels, saved to disk
+var max_score := 0
+
+# Metadata of all unlockable levels, loaded at start of game using _init
 var levels: Array[LevelMetadata]
+
+# Infinite mode
+var infinite_progression_levels := [
+	LevelMetadata.new(
+		INTERMEDIATE_LANE, 2, -1, [TARGET_TYPES[0], TARGET_TYPES[1], TARGET_TYPES[2]]
+	),
+	LevelMetadata.new(FULL_LANE, 1.5, -1, TARGET_TYPES),
+	LevelMetadata.new(FULL_LANE, 1, -1, TARGET_TYPES),
+	LevelMetadata.new(FULL_LANE, 0.5, -1, TARGET_TYPES),
+]
+var infinite_level_progreession_tracker := 0
 
 signal end_level
 signal score_update
@@ -94,15 +118,29 @@ func _init() -> void:
 
 
 func on_balloon_hit():
-	AudioManager.play_sound(AudioManager.AUDIO_EFFECTS["BALLOON_POP"])
-	score += 1
-	score_update.emit()
+	play_balloon_hit_sound()
+	update_score()
 
-	if score == levels[current_level].target_count:
+	if current_level != INFINITE_LEVEL:
+		check_for_win()
+
+
+func check_for_win() -> void:
+	var has_won := score == levels[current_level].target_count
+	if has_won:
 		game_state = GAME_STATE.WIN
 		current_level += 1
 		unlocked_level = max(unlocked_level, current_level)
 		end_level.emit()
+
+
+func play_balloon_hit_sound() -> void:
+	AudioManager.play_sound(AudioManager.AUDIO_EFFECTS["BALLOON_POP"])
+
+
+func update_score() -> void:
+	score += 1
+	score_update.emit()
 
 
 const SAVE_FILE_PATH = "user://save-data.json"
@@ -121,8 +159,10 @@ func load_game() -> void:
 
 	var save_data := json.data as Dictionary
 
-	unlocked_level = save_data["unlocked_level"] as int
-	var _levels: Array = save_data["levels"]
+	unlocked_level = save_data.get("unlocked_level", 0) as int
+	max_score = save_data.get("max_score", 0) as int
+	print("MAX_SCORE", max_score)
+	var _levels: Array = save_data.get("levels", []) as Array
 
 	levels.clear()
 	for level in _levels:
@@ -137,12 +177,14 @@ func save_game():
 	for level in levels:
 		levels_dicts.append(level.to_dict())
 
+	print("MAX_SCORE", max(max_score, score))
 	var save_data := (
 		JSON
 		. stringify(
 			{
 				unlocked_level = unlocked_level,
 				levels = levels_dicts,
+				max_score = max(max_score, score),
 			}
 		)
 	)
