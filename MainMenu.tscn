@@ -1,0 +1,125 @@
+[gd_scene load_steps=9 format=3 uid="uid://cdblu76gxgoua"]
+
+[ext_resource type="Script" path="res://scripts/MainMenu.gd" id="1_cqehd"]
+[ext_resource type="Texture2D" uid="uid://csl4ifqvsi6cu" path="res://sprites/main-menu.png" id="1_in7xp"]
+[ext_resource type="PackedScene" uid="uid://qhfp8r6qklt" path="res://assests/LevelButton.tscn" id="2_sqlrt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbaqe"]
+atlas = ExtResource("1_in7xp")
+region = Rect2(0, 0, 480, 270)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41vfd"]
+atlas = ExtResource("1_in7xp")
+region = Rect2(480, 0, 480, 270)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bp3yk"]
+atlas = ExtResource("1_in7xp")
+region = Rect2(960, 0, 480, 270)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y346x"]
+atlas = ExtResource("1_in7xp")
+region = Rect2(1440, 0, 480, 270)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3sjxv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbaqe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41vfd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bp3yk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y346x")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="MainMenu" type="CanvasLayer" node_paths=PackedStringArray("level_selection", "level_container", "play_button")]
+script = ExtResource("1_cqehd")
+level_selection = NodePath("MarginContainer/Container/LevelContainer/MarginContainer/LevelSelection")
+level_container = NodePath("MarginContainer/Container/LevelContainer")
+play_button = NodePath("MarginContainer/Container/MenuContainer/MarginContainer/MenuContainer/PlayButtn")
+
+[node name="MenuBackground" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3sjxv")
+autoplay = "default"
+frame_progress = 0.593091
+centered = false
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+
+[node name="Container" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MenuContainer" type="PanelContainer" parent="MarginContainer/Container"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Container/MenuContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="MenuContainer" type="VBoxContainer" parent="MarginContainer/Container/MenuContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="PlayButtn" type="Button" parent="MarginContainer/Container/MenuContainer/MarginContainer/MenuContainer"]
+layout_mode = 2
+text = "PLAY"
+
+[node name="InfiniteModeButton" type="Button" parent="MarginContainer/Container/MenuContainer/MarginContainer/MenuContainer"]
+layout_mode = 2
+text = "INFINITE MODE"
+
+[node name="ExitButton" type="Button" parent="MarginContainer/Container/MenuContainer/MarginContainer/MenuContainer"]
+layout_mode = 2
+text = "EXIT"
+
+[node name="LevelContainer" type="PanelContainer" parent="MarginContainer/Container"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Container/LevelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="LevelSelection" type="GridContainer" parent="MarginContainer/Container/LevelContainer/MarginContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="LevelButton" parent="MarginContainer/Container/LevelContainer/MarginContainer/LevelSelection" instance=ExtResource("2_sqlrt")]
+layout_mode = 2
+
+[node name="LevelButton4" parent="MarginContainer/Container/LevelContainer/MarginContainer/LevelSelection" instance=ExtResource("2_sqlrt")]
+layout_mode = 2
+
+[node name="LevelButton5" parent="MarginContainer/Container/LevelContainer/MarginContainer/LevelSelection" instance=ExtResource("2_sqlrt")]
+layout_mode = 2
+
+[node name="LevelButton6" parent="MarginContainer/Container/LevelContainer/MarginContainer/LevelSelection" instance=ExtResource("2_sqlrt")]
+layout_mode = 2
+
+[node name="LevelButton2" parent="MarginContainer/Container/LevelContainer/MarginContainer/LevelSelection" instance=ExtResource("2_sqlrt")]
+layout_mode = 2
+
+[node name="LevelButton3" parent="MarginContainer/Container/LevelContainer/MarginContainer/LevelSelection" instance=ExtResource("2_sqlrt")]
+layout_mode = 2
