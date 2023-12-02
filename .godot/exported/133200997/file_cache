@@ -1,0 +1,11 @@
+res://assests/LevelButton.tscn::17b1763a57454f8fb5d1b31ef77493b9::1699606203::res://.godot/exported/133200997/export-89724b5779c59d8a0f8e8fa247a06950-LevelButton.scn
+res://assests/Player.tscn::3ad84196c64a7ffa3855cbf7ee018d3d::1699606203::res://.godot/exported/133200997/export-4fd780c8b8ec8c228e91f1e886c131a7-Player.scn
+res://assests/Projectile.tscn::ef324cf308ded92333703743f63c2e66::1699606203::res://.godot/exported/133200997/export-3f5422070075a49ec9680ce75d18d992-Projectile.scn
+res://assests/Target.tscn::12d157ff9695e768ed9b05b1cacb5979::1699606203::res://.godot/exported/133200997/export-6819de7e89ac1d2f1c89daf7a2f08309-Target.scn
+res://ui/font.tres::3b8c9b1304e329e59ded56d750589f94::1696247428::res://.godot/exported/133200997/export-3e91895c1ae4bf93581bc4fecbe4195b-font.res
+res://default.tres::04f692b05ff98ddd23b34dcb293a49d6::1701535340::res://.godot/exported/133200997/export-576b18c35431082105bed622f9e1d8fa-default.res
+res://default_bus_layout.tres::652f047c46af0d3ed2d8c16751904765::1699606203::res://.godot/exported/133200997/export-19246414aa9fb561ced4b8dce477acec-default_bus_layout.res
+res://default_env.tres::8e36905bf687f9b50cc67a3c7e4a0a09::1701536977::res://.godot/exported/133200997/export-7cf3fd67ad9f55210191d77b582b8209-default_env.res
+res://GameWorld.tscn::b172224744ce717cdca0e9e286ad36c7::1699606203::res://.godot/exported/133200997/export-4cd1a652371c17354a596089dba0a996-GameWorld.scn
+res://MainMenu.tscn::8ff9a3d25969b9a9c7456e10cc27f7c9::1701536977::res://.godot/exported/133200997/export-e20540a8a37e906f11cb1dae59cc6ed4-MainMenu.scn
+res://Menu.tscn::d4cc974eb874d78e43f7fb6a8968405f::1695445392::res://.godot/exported/133200997/export-efc710f71cc67b1c92c5451511245266-Menu.scn
