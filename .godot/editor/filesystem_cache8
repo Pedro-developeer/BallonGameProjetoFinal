@@ -1,22 +1,22 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1701014642
-default.tres::Theme::3741962267732265028::1699606203::0::1::::<><>::uid://b7eb7wyfqm8yh::::res://sprites/balloon-icon.png<>uid://bqytixddncf7v::::res://fonts/OpenDyslexicAlta-Bold.ttf<>uid://dp2bodi1dlah8::::res://fonts/RobotoMono-Bold.ttf<>uid://b0qavfbjs7vwg::::res://fonts/RobotoMono-Regular.ttf
+::res://::1701521067
+default.tres::Theme::3741962267732265028::1701014670::0::1::::<><>::uid://b7eb7wyfqm8yh
 default_bus_layout.tres::AudioBusLayout::6422952417199168638::1699606203::0::1::::<><>::
-default_env.tres::Environment::588828992922976997::1699606203::0::1::::<><>::
-GameWorld.tscn::PackedScene::7496924053883458073::1699606203::0::1::::<><>::res://scripts/GameWorld.gd<>uid://5bthdn3vdq2n::::res://sprites/background.png<>uid://clgndpp8lvgil::::res://sprites/ship.png<>uid://dcxqqejnc1bks::::res://assests/Projectile.tscn<>uid://c3iaqn3od4auw::::res://assests/Player.tscn<>uid://btkvtpbxcxmim::::res://default.tres<>uid://b7eb7wyfqm8yh::::res://sprites/balloon-icon.png<>uid://lryuq3u4boco::::res://sprites/pause.png<>uid://btveyyrfcsidb::::res://audio/floating-cat-bg.mp3
+default_env.tres::Environment::588828992922976997::1701520941::0::1::::<><>::
+GameWorld.tscn::PackedScene::7496924053883458073::1699606203::0::1::::<><>::res://scripts/GameWorld.gd<>uid://5bthdn3vdq2n
 icon.png::CompressedTexture2D::2937784862692532716::1699606203::1701014643::1::::<><>::
-MainMenu.tscn::PackedScene::4986177607792630528::1699606203::0::1::::<><>::res://scripts/MainMenu.gd<>uid://csl4ifqvsi6cu::::res://sprites/main-menu.png<>uid://qhfp8r6qklt::::res://assests/LevelButton.tscn<>uid://btkvtpbxcxmim::::res://default.tres
+MainMenu.tscn::PackedScene::4986177607792630528::1701520937::0::1::::<><>::res://scripts/MainMenu.gd<>uid://csl4ifqvsi6cu::::res://sprites/main-menu.png<>uid://qhfp8r6qklt::::res://assests/LevelButton.tscn<>uid://btkvtpbxcxmim::::res://default.tres
 Menu.tscn::PackedScene::-1::1695445392::0::1::::<><>::
-World.tscn::PackedScene::7496924053883458073::1695445392::0::1::::<><>::res://scripts/World.gd<>uid://drljo7aaraf42::::res://sprites/bg.png<>res://scripts/Bow.gd<>uid://b028plvn8m7wk::::res://sprites/bow and arrow.png<>uid://b7eb7wyfqm8yh::::res://sprites/balloon-icon.png<>uid://2ico6sytd6vu::::res://ui/joystix monospace.ttf<>uid://d2r4ictmwkb8d::::res://sprites/arrow-icon.png<>uid://e4vyxlp3us1i::::res://sprites/play again.png
+World.tscn::PackedScene::7496924053883458073::1695445392::0::1::::<><>::res://scripts/World.gd<>uid://drljo7aaraf42
 ::res://assests/::1699606203
 LevelButton.tscn::PackedScene::33464831627113473::1699606203::0::1::::<><>::
-Player.tscn::PackedScene::6754673310685386390::1699606203::0::1::::<><>::res://scripts/Bow.gd<>uid://bhafynlra31fr::::res://sprites/cannon.png<>uid://bs8ovo88chvub::::res://sprites/player_and_balloon.png
-Projectile.tscn::PackedScene::7348120695876481466::1699606203::0::1::::<><>::res://scripts/Projectile.gd<>uid://dt033dx7866fy::::res://sprites/projectile.png
-Target.tscn::PackedScene::4775817099959173391::1699606203::0::1::::<><>::res://scripts/Target.gd<>uid://xbqofqybfigd::::res://sprites/balloon.png<>uid://cuq0sjmuyjojf::::res://sprites/spotted-cat.png
-::res://audio/::1699606203
+Player.tscn::PackedScene::6754673310685386390::1699606203::0::1::::<><>::res://scripts/Bow.gd<>uid://bhafynlra31fr
+Projectile.tscn::PackedScene::7348120695876481466::1699606203::0::1::::<><>::res://scripts/Projectile.gd<>uid://dt033dx7866fy
+Target.tscn::PackedScene::4775817099959173391::1699606203::0::1::::<><>::res://scripts/Target.gd<>uid://xbqofqybfigd
+::res://audio/::1701014644
 floating-cat-bg.mp3::AudioStreamMP3::3763647659728400151::1699606203::1701014643::1::::<><>::
 pop.wav::AudioStreamWAV::5579149257467706587::1699606203::1701014644::1::::<><>::
-::res://fonts/::1699606203
+::res://fonts/::1701014642
 OpenDyslexicAlta-Bold.ttf::FontFile::3560156370038086505::1699606203::1701014642::1::::<><>::
 RobotoMono-Bold.ttf::FontFile::8267918794231086295::1699606203::1701014642::1::::<><>::
 RobotoMono-Regular.ttf::FontFile::4174209584976680646::1699606203::1701014642::1::::<><>::
@@ -30,7 +30,7 @@ MainMenu.gd::GDScript::-1::1699606203::0::1::::MainMenu<>CanvasLayer<>::
 Projectile.gd::GDScript::-1::1699606203::0::1::::Projectile<>Area2D<>::
 Target.gd::GDScript::-1::1699606203::0::1::::Target<>Area2D<>res://sprites/balloon-icon.png::
 TargetData.gd::GDScript::-1::1699606203::0::1::::<>Node<>::
-::res://sprites/::1699606203
+::res://sprites/::1701014643
 about-icon.png::CompressedTexture2D::5870061038393479091::1699606203::1701014643::1::::<><>::
 arrow-icon.png::CompressedTexture2D::9091230465239664345::1699606203::1701014643::1::::<><>::
 background.png::CompressedTexture2D::2108895989267828491::1699606203::1701014643::1::::<><>::
@@ -55,6 +55,6 @@ ship.png::CompressedTexture2D::5558100404753815403::1699606203::1701014643::1:::
 spotted-cat.png::CompressedTexture2D::6211198845510210999::1699606203::1701014643::1::::<><>::
 tabby-cat.png::CompressedTexture2D::4574248528752917196::1699606203::1701014643::1::::<><>::
 ::res://sprites/PXO/::1699606203
-::res://ui/::1696247428
+::res://ui/::1701014642
 font.tres::FontFile::-1::1696247428::0::1::::<><>::res://ui/joystix monospace.ttf
 joystix monospace.ttf::FontFile::1911761892505883042::1696247428::1701014642::1::::<><>::

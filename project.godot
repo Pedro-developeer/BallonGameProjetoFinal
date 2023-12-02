@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Depot Gato"
+config/name="Ballon Burst"
 run/main_scene="res://MainMenu.tscn"
 config/features=PackedStringArray("4.1")
 config/icon="res://sprites/logo_art.png"
